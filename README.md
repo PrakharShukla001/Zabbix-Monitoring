@@ -1,35 +1,48 @@
+<div align="center">
+
 # 🖥️ Zabbix 4.0 Server Setup
-### Complete Installation Guide — Commands, Configs & Setup
+
+**Complete Installation Guide — Commands, Configs & Setup**
+
+![Zabbix](https://img.shields.io/badge/Zabbix-4.0_LTS-D40000?style=for-the-badge&logo=zabbix&logoColor=white)
+![CentOS](https://img.shields.io/badge/CentOS-7-262577?style=for-the-badge&logo=centos&logoColor=white)
+![MariaDB](https://img.shields.io/badge/MariaDB-5.5-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![Apache](https://img.shields.io/badge/Apache-httpd-D22128?style=for-the-badge&logo=apache&logoColor=white)
+
+</div>
 
 ---
 
-> **Environment**
-> | Parameter | Value |
-> |---|---|
-> | Zabbix Version | 4.0 LTS |
-> | OS | CentOS 7 / RHEL 7 |
-> | Database | MariaDB 5.5 |
-> | Web Server | Apache (httpd) |
-> | Server IP | `192.168.182.139` |
-> | Zabbix Port | `10051` |
-> | Web URL | `http://192.168.182.139/zabbix` |
+## 🌐 Environment
+
+| Parameter | Value |
+|-----------|-------|
+| **Zabbix Version** | `4.0 LTS` |
+| **OS** | `CentOS 7 / RHEL 7` |
+| **Database** | `MariaDB 5.5` |
+| **Web Server** | `Apache (httpd)` |
+| **Server IP** | `192.168.182.139` |
+| **Zabbix Port** | `10051` |
+| **Web URL** | `http://192.168.182.139/zabbix` |
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Install Zabbix Repository](#step-1--install-zabbix-repository)
-2. [Install Packages](#step-2--install-zabbix-server-frontend--agent)
-3. [Database Setup](#step-3--mariadb-database-setup)
-4. [Configure Zabbix Server](#step-4--configure-zabbix-server)
-5. [Configure PHP / Apache](#step-5--configure-php-for-zabbix-frontend)
-6. [Start & Enable Services](#step-6--start--enable-services)
-7. [Firewall Configuration](#step-7--firewall-configuration)
-8. [SELinux Configuration](#step-8--selinux-configuration)
-9. [Web Frontend Installation](#step-9--web-frontend-installation)
-10. [Agent Configuration](#zabbix-agent-configuration)
-11. [Post-Install Dashboard](#dashboard--post-installation)
-12. [Troubleshooting](#troubleshooting)
+| # | Section |
+|---|---------|
+| 1 | [Install Zabbix Repository](#step-1--install-zabbix-repository) |
+| 2 | [Install Packages](#step-2--install-zabbix-server-frontend--agent) |
+| 3 | [Database Setup](#step-3--mariadb-database-setup) |
+| 4 | [Configure Zabbix Server](#step-4--configure-zabbix-server) |
+| 5 | [Configure PHP / Apache](#step-5--configure-php-for-zabbix-frontend) |
+| 6 | [Start & Enable Services](#step-6--start--enable-services) |
+| 7 | [Firewall Configuration](#step-7--firewall-configuration) |
+| 8 | [SELinux Configuration](#step-8--selinux-configuration) |
+| 9 | [Web Frontend Installation](#step-9--web-frontend-installation) |
+| 10 | [Agent Configuration](#zabbix-agent-configuration) |
+| 11 | [Post-Install Dashboard](#dashboard--post-installation) |
+| 12 | [Troubleshooting](#troubleshooting) |
 
 ---
 
@@ -72,7 +85,7 @@ mysql_secure_installation
 mysql -u root -p
 ```
 
-Inside the **MariaDB shell**:
+Inside the **MariaDB shell:**
 
 ```sql
 -- Create the Zabbix database
@@ -104,7 +117,7 @@ vi /etc/zabbix/zabbix_server.conf
 **Key parameters:**
 
 | Parameter | Value |
-|---|---|
+|-----------|-------|
 | `DBHost` | `localhost` |
 | `DBName` | `zabbix` |
 | `DBUser` | `zabbix` |
@@ -164,8 +177,8 @@ Alias /zabbix /usr/share/zabbix
 </Directory>
 ```
 
-> **⚠️ Note:** Set `date.timezone` to your local timezone.
-> Examples: `Asia/Kolkata` (India) · `America/New_York` (US East) · `Europe/London` (UK)
+> ⚠️ **Note:** Set `date.timezone` to your local timezone.
+> `Asia/Kolkata` (India) · `America/New_York` (US East) · `Europe/London` (UK)
 
 ---
 
@@ -233,19 +246,19 @@ setenforce 0
 Navigate to: **`http://192.168.182.139/zabbix/setup.php`**
 
 | Step | Action |
-|---|---|
-| 1. Welcome | Click **Next step** |
-| 2. Pre-requisites | All items must show **OK** — fix any failures before continuing |
-| 3. Configure DB | `DBHost=localhost` · `DBName=zabbix` · `DBUser=zabbix` · `DBPassword=<your_password>` |
-| 4. Server Details | `Host=localhost` · `Port=10051` · `Name=Zabbix Server` |
-| 5. Summary | Review all settings and confirm |
-| 6. Install | ✅ Success — config file created |
+|------|--------|
+| 1️⃣ Welcome | Click **Next step** |
+| 2️⃣ Pre-requisites | All items must show **OK** — fix any failures before continuing |
+| 3️⃣ Configure DB | `DBHost=localhost` · `DBName=zabbix` · `DBUser=zabbix` · `DBPassword=<your_password>` |
+| 4️⃣ Server Details | `Host=localhost` · `Port=10051` · `Name=Zabbix Server` |
+| 5️⃣ Summary | Review all settings and confirm |
+| 6️⃣ Install | ✅ Success — config file created |
 
-> **✅ Success message:** `Configuration file '/etc/zabbix/web/zabbix.conf.php' created successfully.`
+> ✅ **Success message:** `Configuration file '/etc/zabbix/web/zabbix.conf.php' created successfully.`
 
 ---
 
-## Zabbix Agent Configuration
+## 🤖 Zabbix Agent Configuration
 
 ```bash
 vi /etc/zabbix/zabbix_agentd.conf
@@ -268,35 +281,35 @@ Hostname=Zabbix server
 
 ---
 
-## Dashboard — Post-Installation
+## 📊 Dashboard — Post-Installation
 
-Default login credentials:
+**Default login credentials:**
 
 | Setting | Value |
-|---|---|
-| URL | `http://192.168.182.139/zabbix` |
-| Username | `Admin` |
-| Password | `zabbix` |
+|---------|-------|
+| 🌐 URL | `http://192.168.182.139/zabbix` |
+| 👤 Username | `Admin` |
+| 🔑 Password | `zabbix` |
 
-> **🔒 Security:** Change the default password immediately after first login.
+> 🔒 **Security:** Change the default password immediately after first login.
 > Go to **Administration → Users → Admin**
 
 **System summary after login:**
 
 | Parameter | Value |
-|---|---|
+|-----------|-------|
 | Zabbix server is running | ✅ Yes (`localhost:10051`) |
-| Hosts (enabled / disabled / templates) | 92 (1 / 0 / 91) |
-| Items (enabled / disabled / not supported) | 76 (70 / 0 / 6) |
-| Triggers (enabled / disabled) | 46 (46 / 0) |
-| Users (online) | 2 (1 online) |
+| Hosts (enabled / disabled / templates) | `92` (1 / 0 / 91) |
+| Items (enabled / disabled / not supported) | `76` (70 / 0 / 6) |
+| Triggers (enabled / disabled) | `46` (46 / 0) |
+| Users (online) | `2` (1 online) |
 
-> **⚠️ Common Alert:** *"Zabbix agent on Zabbix server is unreachable for 5 minutes"*
+> ⚠️ **Common Alert:** *"Zabbix agent on Zabbix server is unreachable for 5 minutes"*
 > Fix: ensure `zabbix-agent` is running and `Server=` in `zabbix_agentd.conf` matches the server IP.
 
 ---
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 ### Check Logs
 
@@ -334,10 +347,10 @@ systemctl restart zabbix-agent
 
 ---
 
-## Quick Command Reference
+## ⚡ Quick Command Reference
 
 | Task | Command |
-|---|---|
+|------|---------|
 | Install repo | `rpm -ivh https://repo.zabbix.com/.../zabbix-release-4.0-1.el7.noarch.rpm` |
 | Install packages | `yum install -y zabbix-server-mysql zabbix-web-mysql zabbix-agent` |
 | Install MariaDB | `yum install -y mariadb-server mariadb` |
@@ -351,4 +364,8 @@ systemctl restart zabbix-agent
 
 ---
 
+<div align="center">
+
 *Zabbix 4.0 LTS — CentOS 7 / RHEL 7 — MariaDB*
+
+</div>
